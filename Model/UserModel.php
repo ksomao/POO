@@ -43,14 +43,4 @@ class UserModel
         return;
     }
 
-    /*public function delete($id)
-    {
-        $this->db->exec("DELETE from utlisateurs where id = $id");
-    }
-
-    public function update($pseudo, $id)
-    {
-        $req = $this->db->prepare("update utilisateurs set pseudo = (?) where Id=(?)");
-        $req->execute([$pseudo, $id]);
-    }*/
 }
