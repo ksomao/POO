@@ -19,7 +19,7 @@ class UserModel
 
     public function add($pseudo, $password)
     {
-        $req = $this->db->prepare("INSERT INTO utilisateurs (pseudo,password) VALUES (?,?,?)");
+        $req = $this->db->prepare("INSERT INTO utilisateurs (pseudo,password) VALUES (?,?)");
         $req->execute([$pseudo, $password]);
     }
 
@@ -40,9 +40,10 @@ class UserModel
                 //header("location:login.php");
             }
         }
+        return;
     }
 
-    public function delete($id)
+    /*public function delete($id)
     {
         $this->db->exec("DELETE from utlisateurs where id = $id");
     }
@@ -51,10 +52,5 @@ class UserModel
     {
         $req = $this->db->prepare("update utilisateurs set pseudo = (?) where Id=(?)");
         $req->execute([$pseudo, $id]);
-    }
+    }*/
 }
-
-
-$user = new UserModel();
-$user->add("Flabat", "123");
-//$user->get("kevin", "456789");

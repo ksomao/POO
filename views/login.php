@@ -48,12 +48,11 @@
 </style>
 <body>
 
-<form action="index.php">
+<form action="index.php?action=UserController@login" method="post">
     <div class="content">
         <h1> Login</h1>
-        <p><input type="hidden" name="action" value="UserController@login"></p>
-        <p><input type="text" placeholder="pseudo"></p>
-        <p><input type="text" placeholder="password"></p>
+        <p><input type="text" name="pseudo" placeholder="pseudo"></p>
+        <p><input type="password" name="password" placeholder="password"></p>
         <input type="submit" value="se connecter">
     </div>
 </form>
