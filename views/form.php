@@ -49,14 +49,11 @@
 
 <form action="index.php">
     <div class="content">
-        <h1> S'inscrire</h1>
-        <p>
-            <input type="text" placeholder="pseudo">
-        </p>
-        <p>
-            <input type="text" placeholder="password">
-        </p>
-        <input type="submit" value="s'incrire">
+        <h1> Sign up</h1>
+        <p><input type="hidden" name="action" value="UserController@signup"></p>
+        <p><input type="text" placeholder="pseudo"></p>
+        <p><input type="text" placeholder="password"></p>
+        <input type="submit" value="sign up">
     </div>
 </form>
 </body>

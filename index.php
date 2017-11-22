@@ -1,23 +1,21 @@
 <?php
-
-include 'router.php'
-
-$page = isset($_GET['page']) ? htmlentities($_GET['page']) : 'default';
-  switch ($page) {
-    case 'connexion':
-      include('./views/login.php');
-      break;
+require_once(CONTROLLER . 'UserController.php');
+extract($_POST);
+extract($_GET);
 
 
-      case 'inscription':
-        include('./views/form.php');
-
+switch ($action) {
+    case 'UserController@login':
+        $Usercontroller = new UserController();
+        $Usercontroller->login($pseudo, $password);
         break;
-    case 'default':
-      include('./views/404.php');
-
-      break;
-  }
-
-
- ?>
+    case 'UserController@signup':
+        $Usercontroller = new UserController();
+        $Usercontroller->login($pseudo, $password);
+        break;
+    case 'UserController@logout':
+        $Usercontroller = new UserController();
+        $Usercontroller->login($pseudo, $password);
+        break;
+}
+?>

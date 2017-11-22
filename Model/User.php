@@ -17,22 +17,39 @@ class User
         }
     }
 
-    public function register($pseudo, $password)
+    public function add($pseudo, $password)
     {
         $req = $this->db->prepare("INSERT INTO utilisateurs (pseudo,password) VALUES (?,?,?)");
         $req->execute([$pseudo, $password]);
     }
 
-    public function login($pseudo, $password)
+    public function get($pseudo, $password)
     {
-        $req = $this->db->query("SELECT pseudo FROM utilisateurs WHERE pseudo = {$pseudo}");
-
-
+        //CHECK IF THE USER EXISTS
+        $req = $this->db->query("SELECT * FROM utilisateurs WHERE pseudo = '{$pseudo}'");
+        //GET USER FROM DB AS AN OBJECT
+        $userFromDB = $req->fetchObject();
+        //IF I HAVE ONE RESULT, THEN I'LL CHECK THE PASSWORD
+        if ($req->rowCount() == 1) {
+            //IF THE PASSWORD ARE THE SAME, THE USER IS CONNECTED
+            if ($userFromDB->password == $password) {
+                echo "vous êtes connecté";
+            } //ELSE THE USER IS REDIRECTED TO THE LOGIN  PAGE
+            else {
+                echo "login page";
+                //header("location:login.php");
+            }
+        }
     }
 
+    public function delete($id)
+    {
+        $this->db->exec("DELETE from utlisateurs where id = $id");
+    }
 
 }
 
 
 $user = new User();
-$user->register("john", "456789");
+$user->add("Flabat", "123");
+//$user->get("kevin", "456789");
