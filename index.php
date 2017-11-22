@@ -1,5 +1,7 @@
 <?php
-require_once(CONTROLLER . 'UserController.php');
+require_once('Controller/UserController.php');
+require_once('Model/User.php');
+
 extract($_POST);
 extract($_GET);
 
@@ -11,11 +13,11 @@ switch ($action) {
         break;
     case 'UserController@signup':
         $Usercontroller = new UserController();
-        $Usercontroller->login($pseudo, $password);
+        $Usercontroller->signup($pseudo, $password);
         break;
     case 'UserController@logout':
         $Usercontroller = new UserController();
-        $Usercontroller->login($pseudo, $password);
+        $Usercontroller->remove($pseudo, $password);
         break;
 }
 ?>

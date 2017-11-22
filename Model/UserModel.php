@@ -1,6 +1,6 @@
 <?php
 
-class User
+class UserModel
 {
 
     private $db;
@@ -23,7 +23,7 @@ class User
         $req->execute([$pseudo, $password]);
     }
 
-    public function get($pseudo, $password)
+    public function check($pseudo, $password)
     {
         //CHECK IF THE USER EXISTS
         $req = $this->db->query("SELECT * FROM utilisateurs WHERE pseudo = '{$pseudo}'");
@@ -33,10 +33,10 @@ class User
         if ($req->rowCount() == 1) {
             //IF THE PASSWORD ARE THE SAME, THE USER IS CONNECTED
             if ($userFromDB->password == $password) {
-                echo "vous êtes connecté";
+                return true;
             } //ELSE THE USER IS REDIRECTED TO THE LOGIN  PAGE
             else {
-                echo "login page";
+                return false;
                 //header("location:login.php");
             }
         }
@@ -47,9 +47,14 @@ class User
         $this->db->exec("DELETE from utlisateurs where id = $id");
     }
 
+    public function update($pseudo, $id)
+    {
+        $req = $this->db->prepare("update utilisateurs set pseudo = (?) where Id=(?)");
+        $req->execute([$pseudo, $id]);
+    }
 }
 
 
-$user = new User();
+$user = new UserModel();
 $user->add("Flabat", "123");
 //$user->get("kevin", "456789");
